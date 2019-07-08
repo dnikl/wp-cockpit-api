@@ -4,19 +4,42 @@
 
 Authentifizieren Sie sich mittels Basic Auth.
 Der Username und das Passwort werden von der Netlive AG zur Verfügung gestellt.
+Die Werte müssen als JSON gesendet werden.
 
 ```
-**PUT** http://127.0.0.1:8500/Demandit20180307/System204F/AjaxProxy/sso/interface.cfm
+PUT https://mypage.netlive.ch/System204F/AjaxProxy/sso/interface.cfm
 ```
 
 ## JSON Fields
 
-| Key  | Value | Required | Description |
-| ------------- | ------------- | ------------- |
+| Key | Example value | Required | Description |
+|:-----------|:-----------|:-----------|:-----------|  
 | email  | "max@muster.ch" | yes | |
+| ext_geb_id  | "12BCD" | yes | |
+| kwh_el  | 2000 | yes | |
+| kwh_wrm  | 3000 | yes | |
+| stand_datum  | "2012-04-23T18:25:43.511Z" | yes | |
+| anrede_id | 1 | when email not found  | Siehe Tabelle |
+| vorname | "Max" | when email is not found  | |
+| name | "Muster" | when email is not found  | |
+| bezeichnung | "MFH Max Muster" | when ext_geb_id not found  | |
+| strasse | "Hauptstrasse 17" | when ext_geb_id not found  | |
+| plz | 9200 | when ext_geb_id not found | |
+| ort | "Gossau" | when ext_geb_id not found | |
+| meter_ueber_meer | 800 | when ext_geb_id not found | |
+| egid_nr | 554324 | | |
+| baujahr | 1990 | | |
+| energiebezugsflaeche | 160 | | |
+| waermepumpentyp_id | 1 | | Siehe Tabelle| |
+| brauchwarmwasserproduktion | 1 | | Siehe Tabelle |
+| heizungstyp_id | 2 | | Siehe Tabelle |
+| einschaltungen | 4 | |
+| betriebsdauer | 100 | |
+| installateur | "Peter Müller" | |
 
 
-
+## Example JSON
+```
 {
     "email": "max@muster.ch",
     "ext_geb_id": "id_634",
@@ -38,6 +61,37 @@ Der Username und das Passwort werden von der Netlive AG zur Verfügung gestellt.
     "brauchwarmwasserproduktion": 1,
     "heizungstyp_id": 2,
     "einschaltungen": 4,
-    "betriebsdauer": 120,
-    "installateur": "Max Müller"
+    "betriebsdauer": 100,
+    "installateur": "Peter Müller"
 }
+```
+
+## Tables
+
+### Anrede
+| ID | Value | 
+|:-----------|:-----------|
+1 | Frau
+2 | Herr
+
+### Wärmepumpentyp
+| ID | Value | 
+|:-----------|:-----------|
+2 | Luft/ Wasser-Wärmepumpe
+3 | Sole/ Wasser-Wärmepumpe
+4 | Split-Luft/Wasser-Wärmepumpe
+7 | Inverter-Luft/Wasser-Wärmepumpe
+8 | Inverter-Sole/Wasser-Wärmepumpe
+
+### Brauchwarmwasserproduktion
+| ID | Value | 
+|:-----------|:-----------|
+1 | Ja
+2 | Nein
+
+### Heizungstyp
+| ID | Value | 
+|:-----------|:-----------|
+2 | Bodenheizung (35°C / 30°C)
+3 | Radiatorenheizung (45°C / 40°C)
+4 | Bodenheizungen und Heizkörper kombiniert
