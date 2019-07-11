@@ -95,3 +95,15 @@ PUT https://mypage.netlive.ch/System204F/AjaxProxy/sso/interface.cfm
 2 | Bodenheizung (35°C / 30°C)
 3 | Radiatorenheizung (45°C / 40°C)
 4 | Bodenheizungen und Heizkörper kombiniert
+
+## Responses
+
+### Success
+```
+{
+    "SUCCESS":"updated",
+    "MESSWERT_ID":365
+} 
+```
+
+### Missing Field
