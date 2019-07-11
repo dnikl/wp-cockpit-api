@@ -6,6 +6,14 @@ Authentifizieren Sie sich mittels Basic Auth.
 Der Username und das Passwort werden von der Netlive AG zur Verfügung gestellt.
 Die Werte müssen als JSON gesendet werden.
 
+## Request Headers
+
+Make sure you set the following request header.
+```
+Content-Type: application/json; charset=utf-8
+```
+
+
 ```
 PUT https://mypage.netlive.ch/System204F/AjaxProxy/sso/interface.cfm
 ```
@@ -107,3 +115,8 @@ PUT https://mypage.netlive.ch/System204F/AjaxProxy/sso/interface.cfm
 ```
 
 ### Missing Field
+```
+{
+    "ERROR": "Missing field ext_geb_id in request body"
+} 
+```
